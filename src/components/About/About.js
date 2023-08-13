@@ -1,5 +1,7 @@
 import ImageUploader from "../ImageUploader/ImageUploader";
 import Map from "../Map/Map";
+import PatternInput from "../Shared/PatternInput";
+import RangeInput from "../Shared/RangeInput";
 
 export const About = () => {
   return (
@@ -33,6 +35,8 @@ export const About = () => {
             />
             <div class="col-lg-6 info-right">
               <ImageUploader></ImageUploader>
+              <PatternInput displayPrice={true}></PatternInput>
+              <RangeInput  displayPrice={true}></RangeInput>
               <h6>About Us</h6>
               <h1>Who We Are?</h1>
               <p>
