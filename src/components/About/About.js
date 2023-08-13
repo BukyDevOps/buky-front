@@ -1,4 +1,5 @@
 import ImageUploader from "../ImageUploader/ImageUploader";
+import Map from "../Map/Map";
 
 export const About = () => {
   return (
@@ -24,6 +25,12 @@ export const About = () => {
             <div class="col-lg-6 info-left">
               <img class="img-fluid" src="img/about/info-img.jpg" alt="" />
             </div>
+            <Map
+              latitude={46.11439485}
+              longitude={19.6732199}
+              zoom={15}
+              markerContent="Lokacija!!!!!!!!!!11"
+            />
             <div class="col-lg-6 info-right">
               <ImageUploader></ImageUploader>
               <h6>About Us</h6>
