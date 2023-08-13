@@ -4,9 +4,9 @@ const PatternInput = ({ displayPrice }) => {
     const [Price, setPrice] = useState(0)
     const [Selection, setSelection] = useState([false, false, false, false, false, false, false])
     return (
-        <div>
+        <div className='card'>
             <>&nbsp;</>
-
+            <h5>PatternInput</h5>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" />
                 <label class="form-check-label" for="flexCheckDefault">Monday</label>

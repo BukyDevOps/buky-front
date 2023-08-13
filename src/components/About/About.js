@@ -35,8 +35,12 @@ export const About = () => {
             />
             <div class="col-lg-6 info-right">
               <ImageUploader></ImageUploader>
+              <>&nbsp;</>
+              <>&nbsp;</>
               <PatternInput displayPrice={true}></PatternInput>
-              <RangeInput  displayPrice={true}></RangeInput>
+              <>&nbsp;</>
+              <>&nbsp;</>
+              <RangeInput displayPrice={true}></RangeInput>
               <h6>About Us</h6>
               <h1>Who We Are?</h1>
               <p>

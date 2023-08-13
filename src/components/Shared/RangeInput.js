@@ -6,8 +6,10 @@ const RangeInput = ({ displayPrice }) => {
     const [End, setEnd] = useState(false)
 
     return (
-        <div>
+        <div className='card'>
             <>&nbsp;</>
+            <h5>RangeInput</h5>
+
             <div class="form-control">
                 <label>Period Start</label>
                 <input class="form-control" type="date" value={Start} onChange={e => setStart(e.target.value)} />
