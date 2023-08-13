@@ -1,3 +1,5 @@
+import ImageUploader from "../ImageUploader/ImageUploader";
+
 export const About = () => {
   return (
     <>
@@ -23,6 +25,7 @@ export const About = () => {
               <img class="img-fluid" src="img/about/info-img.jpg" alt="" />
             </div>
             <div class="col-lg-6 info-right">
+              <ImageUploader></ImageUploader>
               <h6>About Us</h6>
               <h1>Who We Are?</h1>
               <p>
