@@ -1,6 +1,10 @@
 import ImageUploader from "../ImageUploader/ImageUploader";
 import Map from "../Map/Map";
+import AccommodationPatternInput from "../Shared/AccommodationPatternInput";
+import AccommodationRangeInput from "../Shared/AccommodationRangeInput";
 import PatternInput from "../Shared/PatternInput";
+import PricePatternInput from "../Shared/PricePatternInput";
+import PriceRangeInput from "../Shared/PriceRangeInput";
 import RangeInput from "../Shared/RangeInput";
 
 export const About = () => {
@@ -37,10 +41,6 @@ export const About = () => {
               <ImageUploader></ImageUploader>
               <>&nbsp;</>
               <>&nbsp;</>
-              <PatternInput displayPrice={true}></PatternInput>
-              <>&nbsp;</>
-              <>&nbsp;</>
-              <RangeInput displayPrice={true}></RangeInput>
               <h6>About Us</h6>
               <h1>Who We Are?</h1>
               <p>
@@ -51,6 +51,10 @@ export const About = () => {
                 minim veniam, quis nostrud exercitation ullamco.
               </p>
             </div>
+            {/* <AccommodationPatternInput></AccommodationPatternInput>
+            <AccommodationRangeInput></AccommodationRangeInput> */}
+            <PriceRangeInput></PriceRangeInput>
+            <PricePatternInput></PricePatternInput>
           </div>
         </div>
       </section>
