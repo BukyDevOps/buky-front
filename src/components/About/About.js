@@ -1,11 +1,4 @@
-import ImageUploader from "../ImageUploader/ImageUploader";
 import Map from "../Map/Map";
-import AccommodationPatternInput from "../Shared/AccommodationPatternInput";
-import AccommodationRangeInput from "../Shared/AccommodationRangeInput";
-import PatternInput from "../Shared/PatternInput";
-import PricePatternInput from "../Shared/PricePatternInput";
-import PriceRangeInput from "../Shared/PriceRangeInput";
-import RangeInput from "../Shared/RangeInput";
 
 export const About = () => {
   return (
@@ -38,9 +31,6 @@ export const About = () => {
               markerContent="Lokacija!!!!!!!!!!11"
             />
             <div class="col-lg-6 info-right">
-              <ImageUploader></ImageUploader>
-              <>&nbsp;</>
-              <>&nbsp;</>
               <h6>About Us</h6>
               <h1>Who We Are?</h1>
               <p>
@@ -51,10 +41,6 @@ export const About = () => {
                 minim veniam, quis nostrud exercitation ullamco.
               </p>
             </div>
-            {/* <AccommodationPatternInput></AccommodationPatternInput>
-            <AccommodationRangeInput></AccommodationRangeInput> */}
-            <PriceRangeInput></PriceRangeInput>
-            <PricePatternInput></PricePatternInput>
           </div>
         </div>
       </section>

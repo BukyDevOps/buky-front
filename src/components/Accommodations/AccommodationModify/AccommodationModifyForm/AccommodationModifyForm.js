@@ -7,10 +7,20 @@ import LocationSelect from "../../../Shared/LocationSelect";
 import ImageUploader from "../../../ImageUploader/ImageUploader";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
+  const [Name, setName] = useState(false)
+  const [Desccription, setDesccription] = useState(false)
+  const [MinGuest, setMinGuest] = useState(0)
+  const [MaxGuest, setMaxGuest] = useState(10)
+  const [AutoApprove, setAutoApprove] = useState(false)
+  const [Location, setLocation] = useState(false)
   const [tags, setTags] = useState([]);
   const [images, setImages] = useState([]);
-
-  const [Location, setLocation] = useState("")
+  const [AvailabilityRanges, setAvailabilityRanges] = useState([])
+  const [AvailabilityPattern, setAvailabilityPattern] = useState([])
+  const [BasePrice, setBasePrice] = useState(false)
+  const [PriceRanges, setPriceRanges] = useState([])
+  const [PricePatterns, setPricePatterns] = useState([])
+  
   const [currentTag, setCurrentTag] = useState("");
   const [currentImage, setCurrentImage] = useState("");
   const [Page, setPage] = useState(0)
@@ -169,18 +179,6 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 );
               })}
               <div class="row mt-10">
-                {/* <input
-                  type="text"
-                  name="image"
-                  placeholder="Image (just copy image url)"
-                  onChange={(e) => {
-                    setCurrentImage(e.target.value);
-                  }}
-                  class="single-input"
-                />
-                <button className="primary-btn mt-2" onClick={addImage}>
-                  Add image
-                </button> */}
                 <ImageUploader setImages={setImages}></ImageUploader>
               </div>
             </div>
