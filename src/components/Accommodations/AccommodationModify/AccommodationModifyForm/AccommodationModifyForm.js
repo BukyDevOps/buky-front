@@ -4,6 +4,7 @@ import AccommodationRangeInput from "../../../Shared/AccommodationRangeInput";
 import PriceRangeInput from "../../../Shared/PriceRangeInput";
 import PricePatternInput from "../../../Shared/PricePatternInput";
 import LocationSelect from "../../../Shared/LocationSelect";
+import ImageUploader from "../../../ImageUploader/ImageUploader";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
   const [tags, setTags] = useState([]);
@@ -168,7 +169,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 );
               })}
               <div class="row mt-10">
-                <input
+                {/* <input
                   type="text"
                   name="image"
                   placeholder="Image (just copy image url)"
@@ -179,7 +180,8 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 />
                 <button className="primary-btn mt-2" onClick={addImage}>
                   Add image
-                </button>
+                </button> */}
+                <ImageUploader setImages={setImages}></ImageUploader>
               </div>
             </div>
           </div>

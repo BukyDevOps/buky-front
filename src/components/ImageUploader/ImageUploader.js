@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 
-const ImageUploader = () => {
+const ImageUploader = ({setImages}) => {
 
     const [file, setFile] = useState(false);
 
@@ -24,7 +24,10 @@ const ImageUploader = () => {
         } catch (err) {
             console.error(err);
         }
-        alert(url)
+        setImages(imgs => {
+            imgs.push(url);
+            return [...imgs]
+        })
         return url;        
     }
 
@@ -32,13 +35,13 @@ const ImageUploader = () => {
         <>
             <div>Image Uploader</div>
             <input
-                className="form-control"
+                className="single-input"
                 type="file"
                 accept="image/jpeg, image/png"
                 onChange={(e) => setFile(e.target.files[0])} />
 
             <button
-                className='btn btn-primary'
+                className='primary-btn'
                 title="{'[Pomeri Logiku na submit]'}"
                 onClick={e => upload()}>Upload</button>
         </>
