@@ -1,4 +1,8 @@
 import { useState } from "react";
+import AccommodationPatternInput from "../../../Shared/AccommodationPatternInput";
+import AccommodationRangeInput from "../../../Shared/AccommodationRangeInput";
+import PriceRangeInput from "../../../Shared/PriceRangeInput";
+import PricePatternInput from "../../../Shared/PricePatternInput";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
   const [tags, setTags] = useState([]);
@@ -46,7 +50,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
     setPage(page => (page + 1) % 3)
   }
 
-  const nextBtn =               <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>
+  const nextBtn = <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>
 
 
   return (
@@ -55,7 +59,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
         <div class="row d-flex  justify-content-center">
           <div class="col-lg-6 col-md-6">
             <div className="d-flex justify-content-between mb-30">
-              <h3 class="my-30">Basic informations</h3>
+              <h3 class="my-30">Basic information</h3>
               {nextBtn}
             </div>
             <form action="#">
@@ -181,9 +185,92 @@ export const AccommodationModifyForm = ({ accommodation }) => {
         </div> : <></>
       }
       {Page === 1 ?
-        <>PAGE2 {nextBtn}</> : <></>}
+        <div class="row d-flex  justify-content-center">
+          <div class="col-lg-6 col-md-6">
+            <div className="d-flex justify-content-between mb-30">
+              <h3 class="my-30">Availability information</h3>
+              {nextBtn}
+            </div>
+            <div class="container mt-5">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#tab1">Range Availability</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tab2">Pattern Availability</a>
+                </li>
+              </ul>
+
+              <div class="tab-content mt-3">
+                <div id="tab1" class="tab-pane fade show active">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <AccommodationRangeInput></AccommodationRangeInput>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab2" class="tab-pane fade">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <AccommodationPatternInput></AccommodationPatternInput>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div> : <></>}
       {Page === 2 ?
-        <>PAGE3 {nextBtn}</> : <></>}
+        <div class="row d-flex  justify-content-center">
+          <div class="col-lg-6 col-md-6">
+            <div className="d-flex justify-content-between mb-30">
+              <h3 class="my-30">Pricing information</h3>
+              {nextBtn}
+            </div>
+            <div className="d-flex justify-content-between">
+              <div class="px-10">
+                <input type="text" class="form-control" placeholder="Daily Price" />
+              </div>
+            </div>
+            <div class="container mt-5">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#tab1">Period Price Rules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tab2">Pattern Price Rules</a>
+                </li>
+              </ul>
+
+              <div class="tab-content mt-3">
+                <div id="tab1" class="tab-pane fade show active">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <PriceRangeInput></PriceRangeInput>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab2" class="tab-pane fade">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <PricePatternInput></PricePatternInput>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div> : <></>}
     </div>
   );
 };

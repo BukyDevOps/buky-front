@@ -17,7 +17,7 @@ const PricePatternInput = () => {
 
     return (
         <div className='m-2'>
-            <button onClick={handleButtonClick} className='btn btn-success'>+ Add Pattern</button>
+            <button onClick={handleButtonClick} className='btn btn-success'>+ Add Pattern Rule</button>
             &nbsp;
             <button onClick={removeRangePeriod} className='btn btn-danger'>- Remove</button>
             {Inputs.map((range, index) => (

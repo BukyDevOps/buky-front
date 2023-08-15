@@ -21,9 +21,11 @@ const AccommodationRangeInput = () => {
             <button onClick={handleButtonClick} className='btn btn-success'>+ Add Range</button>
             &nbsp;
             <button onClick={removeRangePeriod} className='btn btn-danger'>- Remove</button>
-            {Inputs.map((range, index) => (
-                <div key={index}>{range}</div>
-            ))}
+            <div className='my-4'>
+                {Inputs.map((range, index) => (
+                    <div key={index}>{range}</div>
+                ))}
+            </div>
         </div>
     )
 }

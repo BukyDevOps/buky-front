@@ -17,7 +17,7 @@ const PriceRangeInput = () => {
 
     return (
         <div className='m-2'>
-            <button onClick={handleButtonClick} className='btn btn-success'>+ Add Range</button>
+            <button onClick={handleButtonClick} className='btn btn-success'>+ Add Price Rule</button>
             &nbsp;
             <button onClick={removeRangePeriod} className='btn btn-danger'>- Remove</button>
             {Inputs.map((range, index) => (

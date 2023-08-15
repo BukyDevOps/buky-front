@@ -6,9 +6,9 @@ const RangeInput = ({ displayPrice }) => {
     const [End, setEnd] = useState(false)
 
     return (
-        <div className='card'>
-            <>&nbsp;</>
-            <h5>RangeInput</h5>
+        <div className='card mb-2'>
+            {/* <>&nbsp;</>
+            <h5>RangeInput</h5> */}
 
             <div class="form-control">
                 <label>Period Start</label>
@@ -20,12 +20,10 @@ const RangeInput = ({ displayPrice }) => {
             </div>
             {displayPrice ?
                 <div class="form-control">
-                    <label for="flexCheckDefault">Price</label>
+                    <label for="flexCheckDefault">Price For Period</label>
                     <input class="form-control" type="number" value={Price} />
                 </div>
                 : <></>}
-            <>&nbsp;</>
-
         </div>
     )
 }
