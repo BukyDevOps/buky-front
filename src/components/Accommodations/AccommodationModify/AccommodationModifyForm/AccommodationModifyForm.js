@@ -7,17 +7,18 @@ import LocationSelect from "../../../Shared/LocationSelect";
 import ImageUploader from "../../../ImageUploader/ImageUploader";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
-  const [Name, setName] = useState(false)
-  const [Desccription, setDesccription] = useState(false)
+  const [Name, setName] = useState("")
+  const [Desccription, setDesccription] = useState("")
   const [MinGuest, setMinGuest] = useState(0)
   const [MaxGuest, setMaxGuest] = useState(10)
   const [AutoApprove, setAutoApprove] = useState(false)
-  const [Location, setLocation] = useState(false)
+  const [Location, setLocation] = useState("")
   const [tags, setTags] = useState([]);
   const [images, setImages] = useState([]);
   const [AvailabilityRanges, setAvailabilityRanges] = useState([])
-  const [AvailabilityPattern, setAvailabilityPattern] = useState([])
-  const [BasePrice, setBasePrice] = useState(false)
+  //wrap inside [] on send.....
+  const [AvailabilityPattern, setAvailabilityPattern] = useState({dayOfWeek:[]})
+  const [BasePrice, setBasePrice] = useState(null)
   const [PriceRanges, setPriceRanges] = useState([])
   const [PricePatterns, setPricePatterns] = useState([])
   
@@ -59,10 +60,6 @@ export const AccommodationModifyForm = ({ accommodation }) => {
     setImages([...images]);
   };
 
-  const modifyAvailability = () => {
-    alert("nema");
-  };
-
   const nextPage = () => {
     setPage(page => (page + 1) % 3)
   }
@@ -87,6 +84,8 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   placeholder="Name"
                   required
                   class="single-input"
+                  value={Name}
+                  onChange={e => setName(e.target.value)}
                 />
               </div>
               <div class="mt-10">
@@ -96,6 +95,8 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   placeholder="Description"
                   required
                   class="single-textarea"
+                  value={Desccription}
+                  onChange={e => setDesccription(e.target.value)}
                 />
               </div>
               {/* <div class="mt-10">
@@ -109,6 +110,8 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   name="minGuestNum"
                   required
                   class="single-input"
+                  value={MinGuest}
+                  onChange={e => setMinGuest(e.target.value)}
                 />
               </div>
               <div class="mt-10">
@@ -120,12 +123,15 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   name="maxGuestNum"
                   required
                   class="single-input"
+                  value={MaxGuest}
+                  onChange={e => setMaxGuest(e.target.value)}
                 />
               </div>
               <div class="switch-wrap d-flex mt-10">
                 <label>Auto approve reservation</label>
                 <div class="primary-switch ml-10">
-                  <input type="checkbox" id="default-switch" />
+                  <input type="checkbox" id="default-switch"
+                  onChange={e => setAutoApprove(e.target.checked)}/>
                   <label for="default-switch"></label>
                 </div>
               </div>
@@ -207,7 +213,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <AccommodationRangeInput></AccommodationRangeInput>
+                        <AccommodationRangeInput AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges} ></AccommodationRangeInput>
                       </div>
                     </div>
                   </div>
@@ -216,7 +222,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <AccommodationPatternInput></AccommodationPatternInput>
+                        <AccommodationPatternInput AvailabilityPattern={AvailabilityPattern} setAvailabilityPattern={setAvailabilityPattern} ></AccommodationPatternInput>
                       </div>
                     </div>
                   </div>

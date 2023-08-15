@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import RangeInput from './RangeInput';
 
-const AccommodationRangeInput = () => {
+const AccommodationRangeInput = ({AvailabilityRanges, setAvailabilityRanges}) => {
 
     const [Inputs, setInputs] = useState([]);
 
     const handleButtonClick = () => {
-        const newInputs = [...Inputs, <RangeInput key={Inputs.length} index={Inputs.length + 1} displayPrice={false} />];
+        setAvailabilityRanges(old => [...old, {startDate : null, endDate: null}])
+        const newInputs = [...Inputs, <RangeInput key={Inputs.length} index={Inputs.length + 1} displayPrice={false} AvailabilityRanges={AvailabilityRanges}  setAvailabilityRanges={setAvailabilityRanges} idx={AvailabilityRanges.length} />];
         setInputs(newInputs);
     };
 
     const removeRangePeriod = () => {
         const newInputs = Inputs.slice(0, Inputs.length - 1);
         setInputs(newInputs);
+        const newData = AvailabilityRanges.slice(0, AvailabilityRanges.length - 1);
+        setAvailabilityRanges(newData);
     }
 
 

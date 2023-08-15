@@ -1,10 +1,10 @@
 import React from 'react'
 import PatternInput from './PatternInput'
 
-const AccommodationPatternInput = () => {
+const AccommodationPatternInput = ({AvailabilityPattern, setAvailabilityPattern}) => {
   return (
     <div>
-        <PatternInput displayPrice={false}></PatternInput>
+        <PatternInput displayPrice={false} AvailabilityPattern={AvailabilityPattern} setAvailabilityPattern={setAvailabilityPattern}></PatternInput>
     </div>
   )
 }
