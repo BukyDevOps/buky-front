@@ -17,17 +17,14 @@ export const AccommodationModifyForm = ({ accommodation }) => {
   const [images, setImages] = useState([]);
   const [AvailabilityRanges, setAvailabilityRanges] = useState([])
   //wrap inside [] on send.....
-  const [AvailabilityPattern, setAvailabilityPattern] = useState({dayOfWeek:[]})
-  const [BasePrice, setBasePrice] = useState(null)
-  const [PriceRanges, setPriceRanges] = useState([])
-  const [PricePatterns, setPricePatterns] = useState([])
-  
+  const [AvailabilityPattern, setAvailabilityPattern] = useState({ dayOfWeek: [] })
+  const [Price, setPrice] = useState({ basePrice: 0, byPerson: false, priceRules: [] })
   const [currentTag, setCurrentTag] = useState("");
   const [currentImage, setCurrentImage] = useState("");
   const [Page, setPage] = useState(0)
 
   const addTag = () => {
-    if(currentTag.trim() === "") {
+    if (currentTag.trim() === "") {
       alert("Tag value cannot be blank!")
       return
     }
@@ -131,7 +128,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 <label>Auto approve reservation</label>
                 <div class="primary-switch ml-10">
                   <input type="checkbox" id="default-switch"
-                  onChange={e => setAutoApprove(e.target.checked)}/>
+                    onChange={e => setAutoApprove(e.target.checked)} />
                   <label for="default-switch"></label>
                 </div>
               </div>
@@ -241,9 +238,24 @@ export const AccommodationModifyForm = ({ accommodation }) => {
             </div>
             <div className="d-flex justify-content-between">
               <div class="px-10">
-                <input type="text" class="form-control" placeholder="Daily Price" />
+                <input type="text" class="form-control" placeholder="Daily Price"
+                  onChange={e => setPrice(old => {
+                    return { ...old, basePrice: e.target.value }
+                  })} />
               </div>
             </div>
+            <div class="switch-wrap d-flex mt-10 px-10">
+              <label>Display Price By Guest {`(`}Total is default {`)`}</label>
+              <div class="primary-switch ml-10">
+                <input type="checkbox" id="default-switch"
+                  onChange={e => setPrice(old => {
+                    return { ...old, byPerson: e.target.checked }
+                  })} />
+                <label for="default-switch"></label>
+              </div>
+            </div>
+            <button onClick={e => alert(JSON.stringify(Price))}>awdsfgdfh</button>
+
             <div class="container mt-5">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -253,13 +265,12 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <a class="nav-link" data-toggle="tab" href="#tab2">Pattern Price Rules</a>
                 </li>
               </ul>
-
               <div class="tab-content mt-3">
                 <div id="tab1" class="tab-pane fade show active">
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <PriceRangeInput></PriceRangeInput>
+                        <PriceRangeInput price={Price} setPrice={setPrice}></PriceRangeInput>
                       </div>
                     </div>
                   </div>
@@ -268,7 +279,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <PricePatternInput></PricePatternInput>
+                        <PricePatternInput price={Price} setPrice={setPrice}></PricePatternInput>
                       </div>
                     </div>
                   </div>
