@@ -5,6 +5,7 @@ import PriceRangeInput from "../../../Shared/PriceRangeInput";
 import PricePatternInput from "../../../Shared/PricePatternInput";
 import LocationSelect from "../../../Shared/LocationSelect";
 import ImageUploader from "../../../ImageUploader/ImageUploader";
+import axios from "axios";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
   const [Name, setName] = useState("")
@@ -61,7 +62,45 @@ export const AccommodationModifyForm = ({ accommodation }) => {
     setPage(page => (page + 1) % 3)
   }
 
+  const buildDTO = () => {
+    const location = {
+      name: Location.locationName,
+      fullAddress: Location.locationName,
+      lon: Location.longitude,
+      lat: Location.latitude,
+    }
+
+     const availability = {
+      allRangePeriods:AvailabilityRanges,
+      allPatternPeriods:[AvailabilityPattern],
+      price:Price
+    }
+
+    const accommodation = {
+      name: Name,
+      description: Desccription,
+      minGuestNum: MinGuest,
+      maxGuestNum: MaxGuest,
+      autoApproveReservation: AutoApprove,
+      tags: tags,
+      images: images,
+      location: location,
+      availability: availability,
+    }
+
+    return accommodation;
+  }
+
+  const finish = () => {
+      const dto = buildDTO();
+      axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
+        if(res.data)
+          window.alert("success")
+      })
+  }
+
   const nextBtn = <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>
+  const finishBtn = <button className={!!Price.basePrice && !!Name ? "finish-btn" : "finish-btn disabled"} disabled={Page === 3} onClick={finish}>FINISH</button>
 
 
   return (
@@ -234,7 +273,11 @@ export const AccommodationModifyForm = ({ accommodation }) => {
           <div class="col-lg-6 col-md-6">
             <div className="d-flex justify-content-between mb-30">
               <h3 class="my-30">Pricing information</h3>
-              {nextBtn}
+              <div>
+                {nextBtn}
+                &nbsp;
+                {finishBtn}
+              </div>
             </div>
             <div className="d-flex justify-content-between">
               <div class="px-10">
@@ -254,8 +297,6 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 <label for="default-switch"></label>
               </div>
             </div>
-            <button onClick={e => alert(JSON.stringify(Price))}>awdsfgdfh</button>
-
             <div class="container mt-5">
               <ul class="nav nav-tabs">
                 <li class="nav-item">

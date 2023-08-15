@@ -35,6 +35,7 @@ export const LocationSelect = ({ setLocation }) => {
     };
 
     setLocation(newLocation);
+    alert(JSON.stringify(newLocation))
     setSuggestions([]);
     setAddress(properties.formatted);
   };
