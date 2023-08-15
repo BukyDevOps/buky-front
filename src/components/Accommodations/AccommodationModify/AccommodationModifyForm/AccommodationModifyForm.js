@@ -3,16 +3,22 @@ import AccommodationPatternInput from "../../../Shared/AccommodationPatternInput
 import AccommodationRangeInput from "../../../Shared/AccommodationRangeInput";
 import PriceRangeInput from "../../../Shared/PriceRangeInput";
 import PricePatternInput from "../../../Shared/PricePatternInput";
+import LocationSelect from "../../../Shared/LocationSelect";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
   const [tags, setTags] = useState([]);
   const [images, setImages] = useState([]);
 
+  const [Location, setLocation] = useState("")
   const [currentTag, setCurrentTag] = useState("");
   const [currentImage, setCurrentImage] = useState("");
   const [Page, setPage] = useState(0)
 
   const addTag = () => {
+    if(currentTag.trim() === "") {
+      alert("Tag value cannot be blank!")
+      return
+    }
     tags.push(currentTag);
     setTags([...tags]);
     setCurrentTag("");
@@ -81,10 +87,10 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   class="single-textarea"
                 />
               </div>
-              <div class="mt-10">
+              {/* <div class="mt-10">
                 <label placeholder="Min guests number:">Price</label>
                 <input type="number" name="price" required class="single-input" />
-              </div>
+              </div> */}
               <div class="mt-10">
                 <label placeholder="Min guests number:">Min guests number</label>
                 <input
@@ -113,13 +119,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 </div>
               </div>
               <div class="mt-10">
-                <input
-                  type="text"
-                  placeholder="Lokacija !treba smisliti"
-                  name="location"
-                  required
-                  class="single-input"
-                />
+                <LocationSelect setLocation={setLocation}></LocationSelect>
               </div>
             </form>
             <h3 class="mb-30 mt-30">Tags</h3>
@@ -143,6 +143,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 placeholder="Tag name"
                 onChange={(e) => setCurrentTag(e.target.value)}
                 class="single-input"
+                value={currentTag}
               />
               <button className="primary-btn mt-2" onClick={addTag}>
                 Add tag
