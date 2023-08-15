@@ -17,7 +17,7 @@ export const reservations = [
     guestsNum: 8,
     totalPrice: 550,
     priceByGuest: 83,
-    reservationStart: "1/5/2023",
+    reservationStart: "8/17/2023",
     reservationEnd: "23/5/2023",
     reservationStatus: "PENDING",
   },
@@ -89,14 +89,67 @@ export const reservations = [
   },
 ];
 
+export const notifications = [
+  {
+    id: 1,
+    notificationType: "NEW_RESERVATION",
+    subjectId: 1,
+    receiverId: 1,
+    message: "Korisnik blabla je nesto!",
+    createdAt: new Date(),
+    processed: false,
+  },
+  {
+    id: 2,
+    notificationType: "CANCELED_RESERVATION",
+    subjectId: 1,
+    receiverId: 1,
+    message: "Korisnik blabla je nesto!",
+    createdAt: new Date(),
+    processed: false,
+  },
+  {
+    id: 3,
+    notificationType: "HOST_RATING",
+    subjectId: 1,
+    receiverId: 1,
+    message: "Korisnik blabla je nesto!",
+    createdAt: new Date(),
+    processed: false,
+  },
+  {
+    id: 4,
+    notificationType: "ACCOMMODATION_RATING",
+    subjectId: 1,
+    receiverId: 1,
+    message: "Korisnik blabla je nesto!",
+    createdAt: new Date(),
+    processed: false,
+  },
+  {
+    id: 5,
+    notificationType: "PROCESSED_REQUEST",
+    subjectId: 1,
+    receiverId: 1,
+    message: "Korisnik blabla je nesto!",
+    createdAt: new Date(),
+    processed: false,
+  },
+];
+
 export const profile = {
-  username: "blagoje",
-  password: "ddsffgdf",
-  email: "blagojevic@gmal.com",
+  id: 1,
+  username: "guest",
+  password: "$2a$10$eel2W/bpkJCSc04/a0FpsuEC9O5NshzEyJutpu4kujtg/eamAmM6m",
+  email: "blagojic2@gmail.com",
   name: "Njegos",
   surname: "Blagojevic",
-  address: "Zmaj Ognjena Vuka 14",
-  role: "HOST",
+  address: "Zmaj Ognjena Vuka 14, Novi Sad",
+  role: "GUEST",
+  notificationTypes: [],
+  ratingCount: 0,
+  rating: 0.0,
+  active: true,
 };
 
 export const accommodations = [

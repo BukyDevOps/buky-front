@@ -50,10 +50,15 @@ export const Navbar = () => {
                       <Link to="/my-reservations">Reservations</Link>
                     </li>
                     <li>
+                      <Link to="/my-notifications">Notifications</Link>
+                    </li>
+                    <li>
                       <Link to="/my-profile">My Profile</Link>
                     </li>
                     <li>
-                      <button onClick={logout}>Logout</button>
+                      <a href="/home" onClick={logout}>
+                        Logout
+                      </a>
                     </li>
                   </>
                 )}

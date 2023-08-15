@@ -1,4 +1,32 @@
+import { useState } from "react";
+import { login } from "../../../../services/AuthService";
+
 export const LoginForm = () => {
+  const [loginData, setLoginData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+
+    login(loginData)
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.token);
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
     <div className="tab-content" id="myTabContent">
       <div
@@ -13,14 +41,18 @@ export const LoginForm = () => {
             className="form-control"
             name="username"
             placeholder="Username"
+            onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
             className="form-control"
             name="password"
             placeholder="Password"
+            onChange={handleChange}
           />
-          <button className="primary-btn text-uppercase">Login</button>
+          <button className="primary-btn text-uppercase" onClick={submit}>
+            Login
+          </button>
         </form>
       </div>
     </div>

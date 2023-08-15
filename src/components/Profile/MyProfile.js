@@ -1,7 +1,5 @@
-import { ReservationsList } from "../Reservations/ReservationsList/ReservationsList";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import "./MyProfile.css";
-import { reservations } from "../../helpers/entities";
 import { accommodations } from "../../helpers/entities";
 import MyAccommodations from "../MyAccommodations/MyAccommodations";
 import { getRole } from "../../helpers/AuthHelper";
@@ -9,7 +7,6 @@ import { useEffect, useState } from "react";
 
 export const MyProfile = () => {
   const [role, setRole] = useState("");
-
   useEffect(() => {
     setRole(getRole());
   }, []);
@@ -46,7 +43,7 @@ export const MyProfile = () => {
           </div>
         </div>
       </section>
-      <ReservationsList reservations={reservations} />
+      {/* <ReservationsList /> */}
       {role == "HOST" && (
         <>
           <section class="about-banner relative">

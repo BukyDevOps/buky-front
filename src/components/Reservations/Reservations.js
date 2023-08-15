@@ -1,9 +1,30 @@
 import "./Reservations.css";
-import { ReservationsList } from "./ReservationsList/ReservationsList";
-
+import { Reservation } from "./Reservation/Reservation";
+import { cancelReservation } from "../../services/ReservationService";
 import { reservations } from "../../helpers/entities";
 
 export const Reservations = () => {
+  const cancelRes = (id) => {
+    cancelReservation(id)
+      .then(() => {
+        let res = reservations.filter((r) => r.id == id)[0];
+        res.reservationStatus = "CANCELED";
+
+        // setReservations([...reservations]);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  const acceptRes = (id) => {
+    alert("not imeplements");
+  };
+
+  const denyRes = (id) => {
+    alert("not imeplements");
+  };
+
   return (
     <>
       <section class="about-banner relative">
@@ -21,7 +42,17 @@ export const Reservations = () => {
           </div>
         </div>
       </section>
-      <ReservationsList reservations={reservations} />
+      {reservations.map((reservation) => {
+        return (
+          <Reservation
+            key={reservation.id}
+            reservation={reservation}
+            cancelRes={cancelRes}
+            acceptRes={acceptRes}
+            denyRes={denyRes}
+          />
+        );
+      })}
     </>
   );
 };

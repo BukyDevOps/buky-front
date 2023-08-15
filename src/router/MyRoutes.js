@@ -10,6 +10,7 @@ import MyProfile from "../components/Profile/MyProfile";
 import MyAccommodations from "../components/MyAccommodations/MyAccommodations";
 import Accommodation from "../components/Accommodations/Accommodation/Accommodation";
 import AccommodationModify from "../components/Accommodations/AccommodationModify/AccommodationModify";
+import Notifications from "../components/Notifications/Notifications";
 
 const MyRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const MyRoutes = () => {
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/my-accommodations" element={<MyAccommodations />} />
       <Route exact path="/my-reservations" element={<Reservations />} />
+      <Route exact path="/my-notifications" element={<Notifications />} />
       <Route exact path="/my-profile" element={<MyProfile />} />
       <Route
         exact

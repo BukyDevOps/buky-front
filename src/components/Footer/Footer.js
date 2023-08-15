@@ -80,8 +80,6 @@ export const Footer = () => {
                     <input
                       name="EMAIL"
                       placeholder="Email Address"
-                      onFocus="this.placeholder = ''"
-                      onBlur="this.placeholder = 'Email Address '"
                       required=""
                       type="email"
                     />
