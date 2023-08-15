@@ -7,7 +7,7 @@ axios.interceptors.request.use(
     const token = sessionStorage.getItem("token");
 
     if (token) {
-      req.headers.common.Authorization = `Bearer ${token}`;
+      req.headers.Authorization = `Bearer ${token}`;
     }
     return req;
   },
