@@ -17,7 +17,6 @@ export const AccommodationModifyForm = ({ accommodation }) => {
   const [tags, setTags] = useState([]);
   const [images, setImages] = useState([]);
   const [AvailabilityRanges, setAvailabilityRanges] = useState([])
-  //wrap inside [] on send.....
   const [AvailabilityPattern, setAvailabilityPattern] = useState({ dayOfWeek: [] })
   const [Price, setPrice] = useState({ basePrice: 0, byPerson: false, priceRules: [] })
   const [currentTag, setCurrentTag] = useState("");
