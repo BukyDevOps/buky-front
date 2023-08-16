@@ -30,6 +30,11 @@ const MyRoutes = () => {
         path="/accommodations/create"
         element={<AccommodationModify accommodation={null} />}
       />
+      <Route
+        exact
+        path="/accommodations/update/:id"
+        element={<AccommodationModify accommodation={null} />}
+      />
       <Route exact path="/accommodations/:id" element={<Accommodation />} />
     </Routes>
   );

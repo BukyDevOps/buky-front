@@ -8,17 +8,20 @@ import ImageUploader from "../../../ImageUploader/ImageUploader";
 import axios from "axios";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
-  const [Name, setName] = useState("")
-  const [Desccription, setDesccription] = useState("")
-  const [MinGuest, setMinGuest] = useState(0)
-  const [MaxGuest, setMaxGuest] = useState(10)
-  const [AutoApprove, setAutoApprove] = useState(false)
-  const [Location, setLocation] = useState("")
-  const [tags, setTags] = useState([]);
-  const [images, setImages] = useState([]);
-  const [AvailabilityRanges, setAvailabilityRanges] = useState([])
-  const [AvailabilityPattern, setAvailabilityPattern] = useState({ dayOfWeek: [] })
-  const [Price, setPrice] = useState({ basePrice: 0, byPerson: false, priceRules: [] })
+
+  // if (accommodation)
+  //   alert(JSON.stringify(accommodation.availability.allRangePeriods))
+  const [Name, setName] = useState(accommodation?.name ?? "")
+  const [Desccription, setDesccription] = useState(accommodation?.description ?? "")
+  const [MinGuest, setMinGuest] = useState(accommodation?.minGuestNum ?? 0)
+  const [MaxGuest, setMaxGuest] = useState(accommodation?.maxGuestNum ??10)
+  const [AutoApprove, setAutoApprove] = useState(accommodation?.autoApproveReservation ??false)
+  const [Location, setLocation] = useState(accommodation?.location?.name ??"")
+  const [tags, setTags] = useState(accommodation?.tags ??[]);
+  const [images, setImages] = useState(accommodation?.images ??[]);
+  const [AvailabilityRanges, setAvailabilityRanges] = useState(accommodation?.availability?.allRangePeriods ?? [])
+  const [AvailabilityPattern, setAvailabilityPattern] = useState(accommodation?.availability?.allPatternPeriods[0] ?? { dayOfWeek: [] })
+  const [Price, setPrice] = useState(accommodation?.availability?.price ?? { basePrice: 10, byPerson: false, priceRules: [] })
   const [currentTag, setCurrentTag] = useState("");
   const [currentImage, setCurrentImage] = useState("");
   const [Page, setPage] = useState(0)
@@ -69,10 +72,10 @@ export const AccommodationModifyForm = ({ accommodation }) => {
       lat: Location.latitude,
     }
 
-     const availability = {
-      allRangePeriods:AvailabilityRanges,
-      allPatternPeriods:[AvailabilityPattern],
-      price:Price
+    const availability = {
+      allRangePeriods: AvailabilityRanges,
+      allPatternPeriods: [AvailabilityPattern],
+      price: Price
     }
 
     const accommodation = {
@@ -91,16 +94,15 @@ export const AccommodationModifyForm = ({ accommodation }) => {
   }
 
   const finish = () => {
-      const dto = buildDTO();
-      axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
-        if(res.data)
-          window.alert("success")
-      })
+    const dto = buildDTO();
+    axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
+      if (res.data)
+        window.alert("success")
+    })
   }
 
   const nextBtn = <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>
   const finishBtn = <button className={!!Price.basePrice && !!Name ? "finish-btn" : "finish-btn disabled"} disabled={Page === 3} onClick={finish}>FINISH</button>
-
 
   return (
     <div class="section-top-border">
@@ -171,7 +173,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                 </div>
               </div>
               <div class="mt-10">
-                <LocationSelect setLocation={setLocation}></LocationSelect>
+                <LocationSelect location={Location} setLocation={setLocation}></LocationSelect>
               </div>
             </form>
             <h3 class="mb-30 mt-30">Tags</h3>
@@ -280,7 +282,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
             </div>
             <div className="d-flex justify-content-between">
               <div class="px-10">
-                <input type="text" class="form-control" placeholder="Daily Price"
+                <input type="text" class="form-control" placeholder="Daily Price" value={Price.basePrice}
                   onChange={e => setPrice(old => {
                     return { ...old, basePrice: e.target.value }
                   })} />
@@ -289,7 +291,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
             <div class="switch-wrap d-flex mt-10 px-10">
               <label>Display Price By Guest {`(`}Total is default {`)`}</label>
               <div class="primary-switch ml-10">
-                <input type="checkbox" id="default-switch"
+                <input type="checkbox" id="default-switch" checked={Price.byPerson}
                   onChange={e => setPrice(old => {
                     return { ...old, byPerson: e.target.checked }
                   })} />

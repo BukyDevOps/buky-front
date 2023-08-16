@@ -95,11 +95,11 @@ const RangeInput = ({ displayPrice, AvailabilityRanges, setAvailabilityRanges, i
 
             <div class="form-control">
                 <label>Period Start</label>
-                <input class="form-control" type="date"  onChange={e => setStart(e.target.value, idx)} />
+                <input class="form-control" type="date" value={!displayPrice ? AvailabilityRanges && (idx || idx === 0) && AvailabilityRanges[idx] ? AvailabilityRanges[idx]?.startDate : null : null}  onChange={e => setStart(e.target.value, idx)} />
             </div>
             <div class="form-control">
                 <label>Period End</label>
-                <input class="form-control" type="date"  onChange={e => setEnd(e.target.value, idx)} />
+                <input class="form-control" type="date" value={!displayPrice ? AvailabilityRanges && (idx || idx === 0) && AvailabilityRanges[idx] ? AvailabilityRanges[idx]?.endDate : null : null} onChange={e => setEnd(e.target.value, idx)} />
             </div>
             {displayPrice ?
                 <div class="form-control">

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-export const LocationSelect = ({ setLocation }) => {
-  const [address, setAddress] = useState("");
+export const LocationSelect = ({location, setLocation }) => {
+  const [address, setAddress] = useState(location ?? "");
   const [suggestions, setSuggestions] = useState([]);
 
   const handleChange = (e) => {
