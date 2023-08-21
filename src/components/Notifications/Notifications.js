@@ -1,7 +1,20 @@
 import NotificationsList, { Notification } from "./Notification/Notification";
 import { notifications } from "../../helpers/entities";
+import { useEffect, useState } from "react";
+import { getMyNotifications } from "../../services/NotificationService";
 
 export const Notifications = () => {
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    getMyNotifications()
+      .then((res) => {
+        setNotifications(res.data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }, []);
   return (
     <>
       <section class="about-banner relative">

@@ -31,7 +31,7 @@ export const Notification = ({ notification }) => {
         <h6>{notification.notificationType}</h6>
       </div>
       <div className="col-lg-3 d-flex align-items-center">
-        <span>{notification.createdAt.toLocaleString()}</span>
+        <span>{new Date(...notification.createdAt).toLocaleString()}</span>
       </div>
       <div className="col-lg-3 d-flex align-items-center">
         <span>{notification.message}</span>

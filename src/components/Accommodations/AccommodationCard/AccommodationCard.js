@@ -1,52 +1,95 @@
-export const AccommodationCard = () => {
+import { useEffect, useState } from "react";
+import { getRole } from "../../../helpers/AuthHelper";
+
+const result = {
+  accommodation: {
+    id: 1,
+    name: "Helena",
+    tags: ["TV", "AC", "WiFi", "Parking"],
+    images: [
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/137008976.jpg?k=6a65a39ca1a6195c1c8cda5936ef8aa6b9b70f6769e327664072ee175e8abc0d&o=&hp=1",
+    ],
+    location: {
+      id: 1,
+      name: "Bla bla",
+      fullAddress: "fsdfjk dskf ksd",
+      lon: 19.001,
+      lat: 43.0012,
+    },
+  },
+  rating: 4,
+  totalPrice: 200,
+  pricePerGuest: 40,
+  distance: 4500,
+};
+
+export const AccommodationCard = ({ result, makeReservation }) => {
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    let checked = [];
+    for (let index = 0; index < result.rating; index++) {
+      checked.push(<span className="fa fa-star checked"></span>);
+    }
+    for (let index = result.rating; index < 5; index++) {
+      checked.push(<span className="fa fa-star"></span>);
+    }
+    setStars([...checked]);
+  }, []);
   return (
-    <div class="single-destinations">
-      <div class="thumb">
-        <img src="img/hotels/d6.jpg" alt="" />
+    <div className="single-destinations">
+      <div
+        className="thumb"
+        onClick={() =>
+          (window.location.href = "/accommodations/" + result.accommodation.id)
+        }
+      >
+        {result.accommodation.images.length > 0 ? (
+          <img src={result.accommodation.images[0]} alt="" />
+        ) : (
+          <img src="dfs" alt="" />
+        )}
       </div>
-      <div class="details">
-        <h4 class="d-flex justify-content-between">
-          <span>Hilton Star Hotel</span>
-          <div class="star">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-          </div>
+      <div className="details">
+        <h4 className="d-flex justify-content-between">
+          <span>{result.accommodation.name}</span>
+          <div className="star">{stars}</div>
         </h4>
-        <p>View on map | 49 Reviews</p>
-        <ul class="package-list">
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Swimming pool</span>
-            <span>Yes</span>
-          </li>
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Gymnesium</span>
-            <span>No</span>
-          </li>
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Wi-fi</span>
-            <span>Yes</span>
-          </li>
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Room Service</span>
-            <span>No</span>
-          </li>
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Air Condition</span>
-            <span>Yes</span>
-          </li>
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Restaurant</span>
-            <span>Yes</span>
-          </li>
-          <li class="d-flex justify-content-between align-items-center">
-            <span>Price per night</span>
-            <a href="#" class="price-btn">
-              $250
+        <p>Distance: {result.distance}m</p>
+        <ul className="package-list">
+          {result.accommodation.tags.map((tag) => {
+            return (
+              <li
+                key={tag}
+                className="d-flex justify-content-between align-items-center"
+              >
+                <span>{tag}</span>
+                <span>Yes</span>
+              </li>
+            );
+          })}
+          <li className="d-flex justify-content-between align-items-center">
+            <span>Total price</span>
+            <a href="#" className="price-btn">
+              {result.totalPrice} €
             </a>
           </li>
+          <li className="d-flex justify-content-between align-items-center">
+            <span>Price per guest</span>
+            <a href="#" className="price-btn">
+              {result.pricePerGuest} €
+            </a>
+          </li>
+          {getRole() == "GUEST" && (
+            <li className="d-flex justify-content-between align-items-center">
+              <button
+                className="primary-btn"
+                onClick={() => makeReservation(result)}
+              >
+                Make reservation
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </div>

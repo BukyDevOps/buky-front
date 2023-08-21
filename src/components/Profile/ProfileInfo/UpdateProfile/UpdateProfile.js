@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getUerId, logout } from "../../../../helpers/AuthHelper";
-import { deleteMyProfile } from "../../../../services/UserService";
+import { logout } from "../../../../helpers/AuthHelper";
+import { deleteMyProfile, updateUser } from "../../../../services/UserService";
 
 const hostNotificationTypes = [
   "NEW_RESERVATION",
@@ -14,7 +14,7 @@ export const UpdateProfile = ({ profile }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    updatedProfile(updatedProfile)
+    updateUser(updatedProfile)
       .then((res) => {
         alert("profile updated");
       })

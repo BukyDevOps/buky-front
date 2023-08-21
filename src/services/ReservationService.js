@@ -29,3 +29,7 @@ export const userStayedIn = (userId, accommodationId) => {
       accommodationId
   );
 };
+
+export const createReservation = (reservation) => {
+  return axios.post(RESERVATION_PATH, reservation);
+};

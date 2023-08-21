@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "../components/Home/Home";
 import Accommodations from "../components/Accommodations/Accommodations";
-import About from "../components/About/About";
 import Login from "../components/Auth/Login/Login";
 import Register from "../components/Auth/Register/Register";
 import Reservations from "../components/Reservations/Reservations";
@@ -11,6 +10,7 @@ import MyAccommodations from "../components/MyAccommodations/MyAccommodations";
 import Accommodation from "../components/Accommodations/Accommodation/Accommodation";
 import AccommodationModify from "../components/Accommodations/AccommodationModify/AccommodationModify";
 import Notifications from "../components/Notifications/Notifications";
+import SearchResults from "../components/SearchResults/SearchResults";
 
 const MyRoutes = () => {
   return (
@@ -18,7 +18,7 @@ const MyRoutes = () => {
       <Route exact path="" element={<Home />} />
       <Route exact path="/home" element={<Home />} />
       <Route exact path="/accommodations" element={<Accommodations />} />
-      <Route exact path="/about" element={<About />} />
+      <Route exact path="/results" element={<SearchResults />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/my-accommodations" element={<MyAccommodations />} />

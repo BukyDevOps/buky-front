@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LocationSelect from "../../LocationSelect/LocationSelect";
+import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
   const [searchData, setSearchData] = useState({
@@ -8,6 +9,8 @@ export const Search = () => {
     location: null,
     guestsNum: 1,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchData((prevData) => ({
@@ -25,7 +28,7 @@ export const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchData);
+    navigate("/results", { state: searchData });
   };
 
   return (
