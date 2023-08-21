@@ -1,6 +1,10 @@
 import { useState } from "react";
 import AccommodationPatternInput from "../../../Shared/AccommodationPatternInput";
 import AccommodationRangeInput from "../../../Shared/AccommodationRangeInput";
+import UpdateAccommodationRange from "../../../Shared/UpdateAccommodationRange";
+import UpdateAccommodationPattern from "../../../Shared/UpdateAccommodationPattern";
+import UpdateAccommodationPriceRange from "../../../Shared/UpdateAccommodationPriceRange";
+import UpdateAccommodationPricePattern from "../../../Shared/UpdateAccommodationPricePattern";
 import PriceRangeInput from "../../../Shared/PriceRangeInput";
 import PricePatternInput from "../../../Shared/PricePatternInput";
 import LocationSelect from "../../../Shared/LocationSelect";
@@ -11,6 +15,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
 
   // if (accommodation)
   //   alert(JSON.stringify(accommodation.availability.allRangePeriods))
+  const [isUpdate, setisUpdate] = useState(!!accommodation)
   const [Name, setName] = useState(accommodation?.name ?? "")
   const [Desccription, setDesccription] = useState(accommodation?.description ?? "")
   const [MinGuest, setMinGuest] = useState(accommodation?.minGuestNum ?? 0)
@@ -94,11 +99,12 @@ export const AccommodationModifyForm = ({ accommodation }) => {
   }
 
   const finish = () => {
+    alert(JSON.stringify(AvailabilityPattern))
     const dto = buildDTO();
-    axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
-      if (res.data)
-        window.alert("success")
-    })
+ //   axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
+ //     if (res.data)
+ //       window.alert("success")
+ //   })
   }
 
   const nextBtn = <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>
@@ -250,7 +256,11 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
+                        {isUpdate ? 
+                        <UpdateAccommodationRange  AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges}></UpdateAccommodationRange>
+                        :
                         <AccommodationRangeInput AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges} ></AccommodationRangeInput>
+                      }
                       </div>
                     </div>
                   </div>

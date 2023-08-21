@@ -34,6 +34,7 @@ const RangeInput = ({ displayPrice, AvailabilityRanges, setAvailabilityRanges, i
     }
 
     const setStart = (value, idx) => {
+        alert(value)
         if (!displayPrice) {
             setAvailabilityRanges(prevRanges => {
                 const updatedRanges = prevRanges.map((range, i) => {
@@ -86,20 +87,21 @@ const RangeInput = ({ displayPrice, AvailabilityRanges, setAvailabilityRanges, i
         }
     }
 
-    if(displayPrice)
+    if (displayPrice)
         rangePeriodExists(idx)
     return (
         <div className='card mb-2'>
+
             {/* <>&nbsp;</>
             <h5>RangeInput</h5> */}
 
             <div class="form-control">
                 <label>Period Start</label>
-                <input class="form-control" type="date" value={!displayPrice ? AvailabilityRanges && (idx || idx === 0) && AvailabilityRanges[idx] ? AvailabilityRanges[idx]?.startDate : null : null}  onChange={e => setStart(e.target.value, idx)} />
+                <input class="form-control" type="date" onChange={e => setStart(e.target.value, idx)} />
             </div>
             <div class="form-control">
                 <label>Period End</label>
-                <input class="form-control" type="date" value={!displayPrice ? AvailabilityRanges && (idx || idx === 0) && AvailabilityRanges[idx] ? AvailabilityRanges[idx]?.endDate : null : null} onChange={e => setEnd(e.target.value, idx)} />
+                <input class="form-control" type="date" onChange={e => setEnd(e.target.value, idx)} />
             </div>
             {displayPrice ?
                 <div class="form-control">

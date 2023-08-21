@@ -38,7 +38,7 @@ const PatternInput = ({ displayPrice, AvailabilityPattern, setAvailabilityPatter
         if (!displayPrice) {
             setAvailabilityPattern(prevPattern => {
                 const updatedDayOfWeek = value
-                    ? [...prevPattern.dayOfWeek, dayName]
+                    ?  Array.from(new Set([...prevPattern.dayOfWeek, dayName]))
                     : prevPattern.dayOfWeek.filter(day => day !== dayName);
 
                 return { dayOfWeek: updatedDayOfWeek };
@@ -70,31 +70,31 @@ const PatternInput = ({ displayPrice, AvailabilityPattern, setAvailabilityPatter
             <hr></hr>
             {/* <h5>PatternInput</h5> */}
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("MONDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('MONDAY')} onChange={e => handleDayCheckboxChange("MONDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Monday</label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("TUESDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('TUESDAY')} onChange={e => handleDayCheckboxChange("TUESDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Tuesday</label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("WEDNESDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('WEDNESDAY')} onChange={e => handleDayCheckboxChange("WEDNESDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Wednesday</label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("THURSDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('THURSDAY')} onChange={e => handleDayCheckboxChange("THURSDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Thursday</label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("FRIDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('FRIDAY')} onChange={e => handleDayCheckboxChange("FRIDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Friday</label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("SATURDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('SATURDAY')} onChange={e => handleDayCheckboxChange("SATURDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Saturday</label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={e => handleDayCheckboxChange("SUNDAY", e.target.checked)} />
+                <input className="form-check-input" type="checkbox" defaultChecked={!displayPrice && AvailabilityPattern?.dayOfWeek.includes('SUNDAY')} onChange={e => handleDayCheckboxChange("SUNDAY", e.target.checked)} />
                 <label className="form-check-label" for="flexCheckDefault">Sunday</label>
             </div>
             <>&nbsp;</>
