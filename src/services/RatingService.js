@@ -3,11 +3,13 @@ import axios from "axios";
 const RATING_PATH = "http://localhost:8084/api/rating";
 
 export const getRatingByHostId = (hostId) => {
-  return axios.get(RATING_PATH + "?hostId=" + hostId);
+  return axios.get(RATING_PATH + "/host?hostId=" + hostId);
 };
 
 export const getRatingByAccommodationId = (accommodationId) => {
-  return axios.get(RATING_PATH + "?accommodationId=" + accommodationId);
+  return axios.get(
+    RATING_PATH + "/accommodation?accommodationId=" + accommodationId
+  );
 };
 
 export const addRating = (rating) => {
