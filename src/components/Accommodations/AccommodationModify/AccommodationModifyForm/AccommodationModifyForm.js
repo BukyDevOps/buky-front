@@ -13,17 +13,15 @@ import axios from "axios";
 
 export const AccommodationModifyForm = ({ accommodation }) => {
 
-  // if (accommodation)
-  //   alert(JSON.stringify(accommodation.availability.allRangePeriods))
   const [isUpdate, setisUpdate] = useState(!!accommodation)
   const [Name, setName] = useState(accommodation?.name ?? "")
   const [Desccription, setDesccription] = useState(accommodation?.description ?? "")
   const [MinGuest, setMinGuest] = useState(accommodation?.minGuestNum ?? 0)
-  const [MaxGuest, setMaxGuest] = useState(accommodation?.maxGuestNum ??10)
-  const [AutoApprove, setAutoApprove] = useState(accommodation?.autoApproveReservation ??false)
-  const [Location, setLocation] = useState(accommodation?.location?.name ??"")
-  const [tags, setTags] = useState(accommodation?.tags ??[]);
-  const [images, setImages] = useState(accommodation?.images ??[]);
+  const [MaxGuest, setMaxGuest] = useState(accommodation?.maxGuestNum ?? 10)
+  const [AutoApprove, setAutoApprove] = useState(accommodation?.autoApproveReservation ?? false)
+  const [Location, setLocation] = useState(accommodation?.location?.name ?? "")
+  const [tags, setTags] = useState(accommodation?.tags ?? []);
+  const [images, setImages] = useState(accommodation?.images ?? []);
   const [AvailabilityRanges, setAvailabilityRanges] = useState(accommodation?.availability?.allRangePeriods ?? [])
   const [AvailabilityPattern, setAvailabilityPattern] = useState(accommodation?.availability?.allPatternPeriods[0] ?? { dayOfWeek: [] })
   const [Price, setPrice] = useState(accommodation?.availability?.price ?? { basePrice: 10, byPerson: false, priceRules: [] })
@@ -99,12 +97,17 @@ export const AccommodationModifyForm = ({ accommodation }) => {
   }
 
   const finish = () => {
-    alert(JSON.stringify(AvailabilityPattern))
     const dto = buildDTO();
- //   axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
- //     if (res.data)
- //       window.alert("success")
- //   })
+    if (!isUpdate) {
+      axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
+        if (res.data)
+          window.alert("success")
+        window.alert(JSON.stringify(res.data))
+      })
+    } else {
+      console.log(dto)
+      alert(JSON.stringify(dto))
+    }
   }
 
   const nextBtn = <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>
@@ -256,11 +259,11 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        {isUpdate ? 
-                        <UpdateAccommodationRange  AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges}></UpdateAccommodationRange>
-                        :
-                        <AccommodationRangeInput AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges} ></AccommodationRangeInput>
-                      }
+                        {isUpdate ?
+                          <UpdateAccommodationRange AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges}></UpdateAccommodationRange>
+                          :
+                          <AccommodationRangeInput AvailabilityRanges={AvailabilityRanges} setAvailabilityRanges={setAvailabilityRanges} ></AccommodationRangeInput>
+                        }
                       </div>
                     </div>
                   </div>
@@ -322,7 +325,11 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <PriceRangeInput price={Price} setPrice={setPrice}></PriceRangeInput>
+                        {isUpdate ?
+                          <UpdateAccommodationPriceRange price={Price} setPrice={setPrice}></UpdateAccommodationPriceRange>
+                          :
+                          <PriceRangeInput price={Price} setPrice={setPrice}></PriceRangeInput>
+                        }
                       </div>
                     </div>
                   </div>
@@ -331,7 +338,11 @@ export const AccommodationModifyForm = ({ accommodation }) => {
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <PricePatternInput price={Price} setPrice={setPrice}></PricePatternInput>
+                        {isUpdate ?
+                          <UpdateAccommodationPricePattern price={Price} setPrice={setPrice}></UpdateAccommodationPricePattern>
+                          :
+                          <PricePatternInput price={Price} setPrice={setPrice}></PricePatternInput>
+                        }
                       </div>
                     </div>
                   </div>

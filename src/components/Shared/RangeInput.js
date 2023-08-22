@@ -34,7 +34,6 @@ const RangeInput = ({ displayPrice, AvailabilityRanges, setAvailabilityRanges, i
     }
 
     const setStart = (value, idx) => {
-        alert(value)
         if (!displayPrice) {
             setAvailabilityRanges(prevRanges => {
                 const updatedRanges = prevRanges.map((range, i) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UpdateAccommodationPricePattern = () => {
+const UpdateAccommodationPricePattern = ({ price, setPrice }) => {
   return (
     <div>UpdateAccommodationPricePattern</div>
   )
