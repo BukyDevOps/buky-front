@@ -14,12 +14,15 @@ import axios from "axios";
 export const AccommodationModifyForm = ({ accommodation }) => {
 
   const [isUpdate, setisUpdate] = useState(!!accommodation)
+  const [id, setid] = useState(accommodation?.id ?? null)
+  const [availabilityId, setavailabilityId] = useState(accommodation?.availability?.id ?? null)
+  const [userId, setuserId] = useState(accommodation?.userId ?? null)
   const [Name, setName] = useState(accommodation?.name ?? "")
   const [Desccription, setDesccription] = useState(accommodation?.description ?? "")
   const [MinGuest, setMinGuest] = useState(accommodation?.minGuestNum ?? 0)
   const [MaxGuest, setMaxGuest] = useState(accommodation?.maxGuestNum ?? 10)
   const [AutoApprove, setAutoApprove] = useState(accommodation?.autoApproveReservation ?? false)
-  const [Location, setLocation] = useState(accommodation?.location?.name ?? "")
+  const [Location, setLocation] = useState(accommodation?.location ?? "")
   const [tags, setTags] = useState(accommodation?.tags ?? []);
   const [images, setImages] = useState(accommodation?.images ?? []);
   const [AvailabilityRanges, setAvailabilityRanges] = useState(accommodation?.availability?.allRangePeriods ?? [])
@@ -69,17 +72,23 @@ export const AccommodationModifyForm = ({ accommodation }) => {
 
   const buildDTO = () => {
     const location = {
-      name: Location.locationName,
-      fullAddress: Location.locationName,
-      lon: Location.longitude,
-      lat: Location.latitude,
+      name: Location.locationName ?? Location.name,
+      fullAddress: Location.locationName ?? Location.name,
+      lon: Location.longitude ?? Location.lon,
+      lat: Location.latitude ?? Location.lat,
     }
+
 
     const availability = {
       allRangePeriods: AvailabilityRanges,
       allPatternPeriods: [AvailabilityPattern],
       price: Price
     }
+
+    if (Location.id)
+      location.id = Location.id
+    if (availabilityId)
+      availability.id = availabilityId
 
     const accommodation = {
       name: Name,
@@ -91,6 +100,11 @@ export const AccommodationModifyForm = ({ accommodation }) => {
       images: images,
       location: location,
       availability: availability,
+    }
+
+    if (id) {
+      accommodation.id = id;
+      accommodation.userId = userId;
     }
 
     return accommodation;
@@ -105,8 +119,14 @@ export const AccommodationModifyForm = ({ accommodation }) => {
         window.alert(JSON.stringify(res.data))
       })
     } else {
-      console.log(dto)
-      alert(JSON.stringify(dto))
+      console.log(dto.availability)
+      alert('pause')
+      axios.put("http://localhost:8082/api/accommodation", dto).then(res => {
+        if (res.data) {
+          console.log(res.data)
+          window.alert("success")
+        }
+      })
     }
   }
 
