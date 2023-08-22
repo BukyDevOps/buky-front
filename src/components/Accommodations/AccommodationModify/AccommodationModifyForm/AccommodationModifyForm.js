@@ -115,7 +115,7 @@ export const AccommodationModifyForm = ({ accommodation }) => {
     if (!isUpdate) {
       axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
         if (res.data)
-          window.alert("success")
+        //redirect?
         window.alert(JSON.stringify(res.data))
       })
     } else {
@@ -124,7 +124,8 @@ export const AccommodationModifyForm = ({ accommodation }) => {
       axios.put("http://localhost:8082/api/accommodation", dto).then(res => {
         if (res.data) {
           console.log(res.data)
-          window.alert("success")
+        //redirect?
+
         }
       })
     }
