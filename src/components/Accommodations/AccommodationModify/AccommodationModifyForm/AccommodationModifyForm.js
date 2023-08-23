@@ -116,11 +116,10 @@ export const AccommodationModifyForm = ({ accommodation }) => {
       axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
         if (res.data)
         //redirect?
-        window.alert(JSON.stringify(res.data))
+        //window.alert(JSON.stringify(res.data))
+        console.log(res.data)
       })
     } else {
-      console.log(dto.availability)
-      alert('pause')
       axios.put("http://localhost:8082/api/accommodation", dto).then(res => {
         if (res.data) {
           console.log(res.data)

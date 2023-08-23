@@ -8,7 +8,7 @@ export const Login = () => {
         <div className="row fullscreen align-items-center justify-content-between">
           <div className="col-lg-6 col-md-6 banner-left">
             <h6 className="text-white">Away from monotonous life</h6>
-            <h1 className="text-white">Magical Travel</h1>
+            <h1 className="text-white">BUKY</h1>
             <p className="text-white">
               Sign in or sign up to activate different functionalities like
               checking accommodations, publishing accommodations and so on.{" "}
