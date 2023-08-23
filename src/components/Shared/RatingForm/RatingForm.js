@@ -11,6 +11,7 @@ import {
   getRatingByAccommodationId,
   getRatingByHostId,
 } from "../../../services/RatingService";
+import { toast } from "react-toastify";
 
 export const RatingForm = ({ type, subjectId }) => {
   const [visible, setVisible] = useState(true);
@@ -20,39 +21,39 @@ export const RatingForm = ({ type, subjectId }) => {
     guestId: 0,
     hostRating: 0,
     subjectId: 0,
-    ratingValue: 2,
+    ratingValue: 0,
     createdAt: 0,
-    description: "dsdffsdf",
+    description: "",
     active: 0,
   });
 
-  // useEffect(() => {
-  //   if (type == "ACCOMMODATION-RATING") {
-  //     userStayedIn(getUerId(), subjectId).then((res) => {
-  //       setVisible(res.data);
-  //       if (res.data) {
-  //         getRatingByHostId(subjectId).then((res) => {
-  //           if (res.data) {
-  //             setRating(res.data);
-  //             setUpdate(true);
-  //           }
-  //         });
-  //       }
-  //     });
-  //   } else {
-  //     userHasPreviousReservations(getUerId(), subjectId).then((res) => {
-  //       setVisible(res.data);
-  //       if (res.data) {
-  //         getRatingByHostId(subjectId).then((res) => {
-  //           if (res.data) {
-  //             setRating(res.data);
-  //             setUpdate(true);
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (type == "ACCOMMODATION-RATING") {
+      userStayedIn(getUerId(), subjectId).then((res) => {
+        setVisible(res.data);
+        if (res.data) {
+          getRatingByAccommodationId(subjectId).then((res) => {
+            if (res.data) {
+              setRating(res.data);
+              setUpdate(true);
+            }
+          });
+        }
+      });
+    } else {
+      userHasPreviousReservations(getUerId(), subjectId).then((res) => {
+        setVisible(res.data);
+        if (res.data) {
+          getRatingByHostId(subjectId).then((res) => {
+            if (res.data) {
+              setRating(res.data);
+              setUpdate(true);
+            }
+          });
+        }
+      });
+    }
+  }, []);
 
   const handleChange = (e) => {
     setRating({
@@ -63,12 +64,18 @@ export const RatingForm = ({ type, subjectId }) => {
 
   const modifyRating = () => {
     if (!update) {
+      rating.active = true;
+      rating.createdAt = new Date();
+      rating.subjectId = subjectId;
+      rating.hostRating = type != "ACCOMMODATION-RATING";
       addRating(rating).then((res) => {
         setRating(res.data);
+        toast.success("Successfully updated!");
       });
     } else {
       updateRating(rating).then((res) => {
         setRating(res.data);
+        toast.success("Successfully updated!");
       });
     }
   };
@@ -84,13 +91,13 @@ export const RatingForm = ({ type, subjectId }) => {
         className="nice-select"
         name="ratingValue"
         onChange={handleChange}
-        defaultValue={rating.ratingValue}
+        value={rating.ratingValue}
       >
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-        <option value={3}>3</option>
-        <option value={4}>4</option>
-        <option value={5}>5</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
       </select>
       <textarea
         type="textarea"

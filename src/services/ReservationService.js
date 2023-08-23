@@ -3,7 +3,7 @@ import axios from "axios";
 const RESERVATION_PATH = "http://localhost:8083/api/reservation";
 
 export const getMyReservations = (id) => {
-  return axios.post(RESERVATION_PATH + "/user/" + id);
+  return axios.get(RESERVATION_PATH + "/user/" + id);
 };
 
 export const cancelReservation = (id) => {

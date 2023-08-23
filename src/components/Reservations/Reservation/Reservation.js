@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import { reservations } from "../../../helpers/entities";
-import { cancelReservation } from "../../../services/ReservationService";
-import { getRole, getUerId } from "../../../helpers/AuthHelper";
+import { getRole } from "../../../helpers/AuthHelper";
 import RatingForm from "../../Shared/RatingForm/RatingForm";
 
 export const Reservation = ({ reservation, cancelRes, acceptRes, denyRes }) => {
@@ -32,9 +29,9 @@ export const Reservation = ({ reservation, cancelRes, acceptRes, denyRes }) => {
             </div>
             <div className="col-lg-2">
               <label>From:</label>
-              <h6>{reservation.reservationStart}</h6>
+              <h6>{new Date(reservation.reservationStart).toDateString()}</h6>
               <label className="mt-3">To:</label>
-              <h6>{reservation.reservationEnd}</h6>
+              <h6>{new Date(reservation.reservationEnd).toDateString()}</h6>
               <label className="mt-3">Status:</label>
               <h6>{reservation.reservationStatus}</h6>
             </div>
@@ -74,10 +71,7 @@ export const Reservation = ({ reservation, cancelRes, acceptRes, denyRes }) => {
                 subjectId={reservation.accommodationId}
                 type={"ACCOMMODATION-RATING"}
               />
-              <RatingForm
-                subjectId={reservation.accommodationId}
-                type={"HOST-RATING"}
-              />
+              <RatingForm subjectId={reservation.hostId} type={"HOST-RATING"} />
             </div>
           </div>
         </div>
