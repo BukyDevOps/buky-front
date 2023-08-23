@@ -20,7 +20,7 @@ export const Navbar = () => {
           <div className="row align-items-center justify-content-between d-flex">
             <div id="logo">
               <Link to="/home">
-                <img src={logo} alt="" title="" />
+              <h2 className="text-white">Buky</h2>
               </Link>
             </div>
             <nav id="nav-menu-container">

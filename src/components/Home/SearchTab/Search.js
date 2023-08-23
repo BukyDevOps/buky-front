@@ -32,45 +32,47 @@ export const Search = () => {
   };
 
   return (
-    <div className="tab-content" id="myTabContent">
-      <div
-        className="tab-pane fade show active"
-        id="flight"
-        role="tabpanel"
-        aria-labelledby="flight-tab"
-      >
-        <form className="form-wrap">
-          <label>From</label>
-          <input
-            type="date"
-            className="form-control"
-            name="from"
-            placeholder="From "
-            onChange={handleChange}
-          />
-          <label>To</label>
-          <input
-            type="date"
-            className="form-control"
-            name="to"
-            placeholder="To "
-            onChange={handleChange}
-          />
-          <LocationSelect setLocation={handleLocationChange} />
-          <input
-            type="number"
-            min="1"
-            className="form-control"
-            name="guestsNum"
-            placeholder="Number of guests"
-            onChange={handleChange}
-          />
-          <button className="primary-btn text-uppercase" onClick={handleSearch}>
-            Search
-          </button>
-        </form>
+    <>
+      <div className="tab-content" id="myTabContent">
+        <div
+          className="tab-pane fade show active"
+          id="flight"
+          role="tabpanel"
+          aria-labelledby="flight-tab"
+        >
+          <form className="form-wrap">
+            <label>From</label>
+            <input
+              type="date"
+              className="form-control"
+              name="from"
+              placeholder="From "
+              onChange={handleChange}
+            />
+            <label>To</label>
+            <input
+              type="date"
+              className="form-control"
+              name="to"
+              placeholder="To "
+              onChange={handleChange}
+            />
+            <LocationSelect setLocation={handleLocationChange} />
+            <input
+              type="number"
+              min="1"
+              className="form-control"
+              name="guestsNum"
+              placeholder="Number of guests"
+              onChange={handleChange}
+            />
+            <button className="primary-btn text-uppercase" onClick={handleSearch}>
+              Search
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

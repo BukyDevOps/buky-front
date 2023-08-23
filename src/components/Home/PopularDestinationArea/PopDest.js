@@ -9,10 +9,9 @@ export const PopDest = () => {
         <div className="row d-flex justify-content-center">
           <div className="menu-content pb-70 col-lg-8">
             <div className="title text-center">
-              <h1 className="mb-10">Popular Destinations</h1>
+              <h1 className="mb-10">Explore Trending Destinations</h1>
               <p>
-                We all live in an age that belongs to the young at heart. Life
-                that is becoming extremely fast, day.
+                Search deals on hotels, homes, and much more...
               </p>
             </div>
           </div>
