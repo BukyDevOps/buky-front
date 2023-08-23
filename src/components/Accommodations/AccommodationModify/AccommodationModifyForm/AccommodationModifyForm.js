@@ -112,22 +112,25 @@ export const AccommodationModifyForm = ({ accommodation }) => {
 
   const finish = () => {
     const dto = buildDTO();
-    if (!isUpdate) {
-      axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
-        if (res.data)
-        //redirect?
-        //window.alert(JSON.stringify(res.data))
-        console.log(res.data)
-      })
+    if (window.confirm("Finished setting up all data?")) {
+      if (!isUpdate) {
+        axios.post("http://localhost:8082/api/accommodation", dto).then(res => {
+          if (res.data)
+            window.location.href = '/my-accommodations'
+        })
+      } else {
+        axios.put("http://localhost:8082/api/accommodation", dto).then(res => {
+          if (res.data) {
+            console.log(res.data)
+            //redirect?
+            window.location.href = '/my-accommodations'
+          }
+        })
+      }
     } else {
-      axios.put("http://localhost:8082/api/accommodation", dto).then(res => {
-        if (res.data) {
-          console.log(res.data)
-        //redirect?
-
-        }
-      })
+      return null;
     }
+
   }
 
   const nextBtn = <button className="primary-btn" disabled={Page === 3} onClick={nextPage}>NEXT</button>

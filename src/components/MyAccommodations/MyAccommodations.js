@@ -14,6 +14,14 @@ export const MyAccommodations = () => {
     })
   }, [])
 
+
+  const deleteAccommodation = (id, name) => {
+    if(window.confirm(`This action will delete Accommodation: "${name}"`)) {
+      axios.delete(`http://localhost:8082/api/accommodation/${id}`)
+    }
+    
+  }
+
   return (
 
     <>
@@ -32,41 +40,39 @@ export const MyAccommodations = () => {
           </div>
         </div>
       </section>
-      <div className="container">
+      <div className="container-fluid table-width">
         <div class="section-top-border">
           <a href="/accommodations/create" className="primary-btn text-uppercase">
             Create accommodation
           </a>
           <div class="progress-table-wrap">
+          &nbsp;
             <div class="progress-table">
               <div class="table-head">
-                <div class="user">User</div>
-                <div class="name">Name</div>
-                <div class="description">Description</div>
-                <div class="location">Location</div>
-                <div class="btn1"></div>
+                {/* <div class="user">User</div> */}
+                <div class="name w-50">Name</div>
+                <div class="description w-50">Description</div>
+                <div class="location w-50">Location</div>
+                <div class="btn1 w-25"></div>
                 <div class="btn2"></div>
                 <div class="btn3"></div>
               </div>
               {accommodations && accommodations.map((r) => (
                 <div class="table-row" key={r.id}>
-                  <div class="user">{r.userId}</div>
-                  <div class="name">{r.name}</div>
-                  <div class="description">{r.description}</div>
-                  <div class="location">Lokacija</div>
+                  {/* <div class="user">{r.userId}</div> */}
+                  <div class="name w-50">{r.name}</div>
+                  <div class="description w-50">{r.description}</div>
+                  <div class="location w-50">{r?.location?.name ?? "Not Specified"}</div>
+                  {/* <div class="btn1">
+                    <a href={"/accommodation/" + r.id} class="genric-btn primary">View</a>
+                  </div> */}
+                  &nbsp;
                   <div class="btn1">
-                    <a
-                      href={"/accommodation/" + r.id}
-                      class="genric-btn primary"
-                    >
-                      View
-                    </a>
+                    <a href={"/accommodations/update/" + r.id} class="genric-btn primary">View/Update</a>
                   </div>
+                  &nbsp;
                   <div class="btn1">
-                    <button class="genric-btn primary">Update</button>
-                  </div>
-                  <div class="btn1">
-                    <button class="genric-btn primary">Delete</button>
+                    <button class="genric-btn danger" onClick={e => deleteAccommodation(r.id, r.name)}>Delete</button>
                   </div>
                 </div>
               )
