@@ -1163,6 +1163,12 @@ h6 {
     background: #fff;
 }
 
+.small-img {
+    min-height: 205px;
+    object-fit: cover;
+
+}
+
 .genric-btn.success-border:hover {
     color: #fff;
     background: #4cd3e3;

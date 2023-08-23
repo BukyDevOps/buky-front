@@ -17,7 +17,7 @@ const MyRoutes = () => {
     <Routes>
       <Route exact path="" element={<Home />} />
       <Route exact path="/home" element={<Home />} />
-      <Route exact path="/accommodations" element={<Accommodations />} />
+      <Route exact path="/accommodations" element={<Accommodations hideTop={false} displayNum={6}/>} />
       <Route exact path="/results" element={<SearchResults />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/register" element={<Register />} />
