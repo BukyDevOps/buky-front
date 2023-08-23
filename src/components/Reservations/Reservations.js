@@ -61,7 +61,9 @@ export const Reservations = () => {
         </div>
       </section>
       {reservations.length == 0 ? (
-        <h1>You still don't have any reservation!</h1>
+        <div className="container-fliud w-25 m-auto">
+          <h1>No Reservations Yet!</h1>
+        </div>
       ) : (
         reservations.map((reservation) => {
           return (
