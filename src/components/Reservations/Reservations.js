@@ -1,16 +1,34 @@
 import "./Reservations.css";
 import { Reservation } from "./Reservation/Reservation";
-import { cancelReservation } from "../../services/ReservationService";
-import { reservations } from "../../helpers/entities";
+import {
+  cancelReservation,
+  getMyReservations,
+} from "../../services/ReservationService";
+import { useEffect, useState } from "react";
+import { getRole, getUerId } from "../../helpers/AuthHelper";
+import { toast } from "react-toastify";
 
 export const Reservations = () => {
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    if (getRole() == "GUEST") {
+      getMyReservations(getUerId())
+        .then((res) => {
+          setReservations(res.data);
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    }
+  }, []);
+
   const cancelRes = (id) => {
     cancelReservation(id)
       .then(() => {
         let res = reservations.filter((r) => r.id == id)[0];
         res.reservationStatus = "CANCELED";
-
-        // setReservations([...reservations]);
+        setReservations([...reservations]);
       })
       .catch((err) => {
         alert(err.message);
@@ -42,17 +60,21 @@ export const Reservations = () => {
           </div>
         </div>
       </section>
-      {reservations.map((reservation) => {
-        return (
-          <Reservation
-            key={reservation.id}
-            reservation={reservation}
-            cancelRes={cancelRes}
-            acceptRes={acceptRes}
-            denyRes={denyRes}
-          />
-        );
-      })}
+      {reservations.length == 0 ? (
+        <h1>You still don't have any reservation!</h1>
+      ) : (
+        reservations.map((reservation) => {
+          return (
+            <Reservation
+              key={reservation.id}
+              reservation={reservation}
+              cancelRes={cancelRes}
+              acceptRes={acceptRes}
+              denyRes={denyRes}
+            />
+          );
+        })
+      )}
     </>
   );
 };
