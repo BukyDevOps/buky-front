@@ -27,6 +27,12 @@ const SingleAccommodation = ({ accommodation }) => {
                             <span>Yes</span>
                         </li>
                     )}
+                    <li className="d-flex justify-content-between align-items-center">
+                        <span>Daily price</span>
+                        <a href="#" className="price-btn">
+                            {accommodation.availability.price.basePrice} €
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
