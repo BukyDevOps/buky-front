@@ -1,4 +1,3 @@
-import { profile } from "../../../helpers/entities";
 import { UpdateProfile } from "./UpdateProfile/UpdateProfile";
 
 export const ProfileInfo = () => {
@@ -10,7 +9,7 @@ export const ProfileInfo = () => {
             <img class="img-fluid" src="img/about/info-img.jpg" alt="" />
           </div>
           <div class="col-lg-6 info-right">
-            <UpdateProfile profile={profile} />
+            <UpdateProfile />
           </div>
         </div>
       </div>

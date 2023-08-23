@@ -75,6 +75,9 @@ export const IssuerSection = ({ user }) => {
     for (let index = 0; index < user.rating; index++) {
       checked.push(<span class="fa fa-star checked"></span>);
     }
+    for (let index = checked.length; index < 5; index++) {
+      checked.push(<span class="fa fa-star"></span>);
+    }
     setStars([...checked]);
     setUserId(getUerId());
   }, []);
@@ -93,10 +96,7 @@ export const IssuerSection = ({ user }) => {
           {user.name} {user.surname}
         </p>
         <h4 class="d-flex justify-content-between">
-          <div class="star">
-            {stars}
-            <span class="fa fa-star"></span>
-          </div>
+          <div class="star">{stars}</div>
         </h4>
         {userId == user.id && (
           <div className="row mt-2">

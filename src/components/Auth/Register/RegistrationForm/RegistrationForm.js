@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./RegistrationForm.css";
-import { registration } from "../../../../services/AuthService";
+import { login, registration } from "../../../../services/AuthService";
+import { toast } from "react-toastify";
 
 const hostNotificationTypes = [
   "NEW_RESERVATION",
@@ -47,10 +48,16 @@ export const RegistrationForm = () => {
     e.preventDefault();
     registration(registrationData)
       .then((res) => {
-        alert("sve ok");
+        login({
+          username: registrationData.username,
+          password: registrationData.password,
+        }).then((res) => {
+          sessionStorage.setItem("token", res.data.token);
+          window.location.href = "/";
+        });
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -145,10 +152,10 @@ export const RegistrationForm = () => {
             })}
           {registrationData.role == "GUEST" && (
             <div className="switch-wrap d-flex justify-content-between">
-              <p>REQUEST_PROCESSED</p>
+              <p>PROCESSED_REQUEST</p>
               <div className="primary-checkbox">
                 <input
-                  name="REQUEST_PROCESSED"
+                  name="PROCESSED_REQUEST"
                   type="checkbox"
                   id="default-checkbox"
                   onChange={handleChange}

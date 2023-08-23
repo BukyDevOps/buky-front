@@ -1,6 +1,11 @@
-import { useState } from "react";
-import { logout } from "../../../../helpers/AuthHelper";
-import { deleteMyProfile, updateUser } from "../../../../services/UserService";
+import { useEffect, useState } from "react";
+import { getUerId, logout } from "../../../../helpers/AuthHelper";
+import {
+  deleteMyProfile,
+  getUserById,
+  updateUser,
+} from "../../../../services/UserService";
+import { toast } from "react-toastify";
 
 const hostNotificationTypes = [
   "NEW_RESERVATION",
@@ -9,17 +14,36 @@ const hostNotificationTypes = [
   "ACCOMMODATION_RATING",
 ];
 
-export const UpdateProfile = ({ profile }) => {
-  const [updatedProfile, setUpdatedProfile] = useState(profile);
+export const UpdateProfile = () => {
+  const [updatedProfile, setUpdatedProfile] = useState({
+    id: null,
+    username: "",
+    password: "",
+    email: "",
+    name: "",
+    surname: "",
+    address: "",
+    role: "",
+    notificationTypes: [],
+    ratingCount: 0,
+    rating: 0.0,
+    active: true,
+  });
+
+  useEffect(() => {
+    getUserById(getUerId()).then((res) => {
+      setUpdatedProfile(res.data);
+    });
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();
     updateUser(updatedProfile)
       .then((res) => {
-        alert("profile updated");
+        toast.success("profile updated");
       })
       .catch((err) => {
-        alert("some error");
+        toast.error(err.message);
       });
   };
 
@@ -32,7 +56,7 @@ export const UpdateProfile = ({ profile }) => {
         window.location.href = "/home";
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -144,14 +168,14 @@ export const UpdateProfile = ({ profile }) => {
             })}
           {updatedProfile.role == "GUEST" && (
             <div className="switch-wrap d-flex justify-content-between">
-              <p>REQUEST_PROCESSED</p>
+              <p>PROCESSED_REQUEST</p>
               <div className="primary-checkbox">
                 <input
-                  name="REQUEST_PROCESSED"
+                  name="PROCESSED_REQUEST"
                   type="checkbox"
                   id="default-checkbox"
                   onChange={handleChange}
-                  defaultChecked={checkTypeExisting("REQUEST_PROCESSED")}
+                  defaultChecked={checkTypeExisting("PROCESSED_REQUEST")}
                 />
                 <label for="default-checkbox"></label>
               </div>

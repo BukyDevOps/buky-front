@@ -55,7 +55,7 @@ export const AccommodationCard = ({ result, makeReservation }) => {
           <span>{result.accommodation.name}</span>
           <div className="star">{stars}</div>
         </h4>
-        <p>Distance: {result.distance}m</p>
+        <p>Distance: {(result.distance / 1000).toFixed(2)} km</p>
         <ul className="package-list">
           {result.accommodation.tags.map((tag) => {
             return (
