@@ -28,9 +28,11 @@ export const Navbar = () => {
                 <li>
                   <Link to="/home">Home</Link>
                 </li>
+                {(!role || role === "GUEST") && (
                 <li>
                   <Link to="/accommodations">Accommodations</Link>
                 </li>
+                )}
                 {role === "" && (
                   <li>
                     <Link to="/login">Login</Link>
