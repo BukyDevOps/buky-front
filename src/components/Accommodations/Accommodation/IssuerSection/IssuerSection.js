@@ -2,71 +2,10 @@ import { useEffect, useState } from "react";
 import "./IssuerSection.css";
 import { Ratings } from "../../../Ratings/Ratings";
 import { getUerId } from "../../../../helpers/AuthHelper";
+import { deleteAccommodationById } from "../../../../services/AccommodationService";
+import { toast } from "react-toastify";
 
-const ratings = [
-  {
-    id: 1,
-    guest: {
-      id: 1,
-      username: "guest1",
-    },
-    ratingValue: 3,
-    createdAt: new Date(),
-    description: "Lijepa je vikendica.",
-  },
-  {
-    id: 1,
-    guest: {
-      id: 1,
-      username: "guest1",
-    },
-    ratingValue: 3,
-    createdAt: new Date(),
-    description: "Lijepa je vikendica.",
-  },
-  {
-    id: 1,
-    guest: {
-      id: 1,
-      username: "guest1",
-    },
-    ratingValue: 3,
-    createdAt: new Date(),
-    description: "Lijepa je vikendica.",
-  },
-  {
-    id: 1,
-    guest: {
-      id: 1,
-      username: "guest1",
-    },
-    ratingValue: 3,
-    createdAt: new Date(),
-    description: "Lijepa je vikendica.",
-  },
-  {
-    id: 1,
-    guest: {
-      id: 1,
-      username: "guest1",
-    },
-    ratingValue: 3,
-    createdAt: new Date(),
-    description: "Lijepa je vikendica.",
-  },
-  {
-    id: 1,
-    guest: {
-      id: 1,
-      username: "guest1",
-    },
-    ratingValue: 3,
-    createdAt: new Date(),
-    description: "Lijepa je vikendica.",
-  },
-];
-
-export const IssuerSection = ({ user }) => {
+export const IssuerSection = ({ user, accommodationId }) => {
   const [stars, setStars] = useState([]);
   const [userId, setUserId] = useState("");
 
@@ -81,6 +20,22 @@ export const IssuerSection = ({ user }) => {
     setStars([...checked]);
     setUserId(getUerId());
   }, []);
+
+  const update = () => {
+    window.location.href = `/accommodations/update/${accommodationId}`;
+  };
+
+  const deleteAccommodation = () => {
+    deleteAccommodationById(accommodationId)
+      .then(() => {
+        toast.success("Accommodation successfully deleted!");
+        window.location.href = "/home";
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
   return (
     <div className="row mt-3">
       <div className="d-flex justify-content-center col-lg-2">
@@ -100,13 +55,20 @@ export const IssuerSection = ({ user }) => {
         </h4>
         {userId == user.id && (
           <div className="row mt-2">
-            <button className="primary-btn text-uppercase">Delete</button>
-            <button className="primary-btn text-uppercase">Update</button>
+            <button
+              className="primary-btn text-uppercase"
+              onClick={deleteAccommodation}
+            >
+              Delete
+            </button>
+            <button className="primary-btn text-uppercase" onClick={update}>
+              Update
+            </button>
           </div>
         )}
       </div>
       <div className="col-lg-7">
-        <Ratings ratings={ratings} />
+        <Ratings id={user.id} type="HOST_RATINGS" />
       </div>
     </div>
   );

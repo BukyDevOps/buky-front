@@ -6,6 +6,7 @@ import IssuerSection from "./IssuerSection/IssuerSection";
 import { Ratings } from "../../Ratings/Ratings";
 import { GET_ACCOMMODATION_BY_ID } from "../../../helpers/graphql";
 import { useQuery } from "@apollo/client";
+import Map from "../../Map/Map";
 
 const ratings = [
   {
@@ -107,7 +108,12 @@ export const Accommodation = () => {
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 info-left">
-                  {/* <CustomMap location={accommodation.location} /> */}
+                  <Map
+                    longitude={accommodation.location.lon}
+                    latitude={accommodation.location.lat}
+                    zoom={15}
+                    markerContent={"f"}
+                  />
                 </div>
                 <div class="col-lg-6 info-right">
                   <h6>Accommodation</h6>
@@ -127,10 +133,13 @@ export const Accommodation = () => {
                 </div>
               </div>
               <div className="container border-top mt-4 pt-3">
-                <Ratings ratings={ratings} />
+                <Ratings id={accommodation.id} type="" />
               </div>
               <div className="container border-top mt-4">
-                <IssuerSection user={accommodation.user} />
+                <IssuerSection
+                  user={accommodation.user}
+                  accommodationId={accommodation.id}
+                />
               </div>
             </div>
           </section>

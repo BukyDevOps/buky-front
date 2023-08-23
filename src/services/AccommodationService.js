@@ -20,3 +20,7 @@ export const search = (search) => {
       search.to
   );
 };
+
+export const deleteAccommodationById = (id) => {
+  return axios.delete(ACCOMMODATION_PATH + `/${id}`);
+};
