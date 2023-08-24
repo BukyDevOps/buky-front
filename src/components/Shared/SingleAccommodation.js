@@ -29,7 +29,7 @@ const SingleAccommodation = ({ accommodation }) => {
                     )}
                     <li className="d-flex justify-content-between align-items-center">
                         <span>Daily price</span>
-                        <a href="#" className="price-btn">
+                        <a href={`/accommodations/${accommodation?.id}`} className="price-btn">
                             {accommodation.availability.price.basePrice} €
                         </a>
                     </li>

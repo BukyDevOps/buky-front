@@ -31,6 +31,7 @@ export const SearchResults = () => {
       priceByGuest: result.pricePerGuest,
       reservationStart: location.state.from,
       reservationEnd: location.state.to,
+      reservationStatus:null
     };
 
     createReservation(newReservation)
