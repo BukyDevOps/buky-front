@@ -11,10 +11,20 @@ const Map = ({ latitude, longitude, zoom, markerContent }) => {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
+    var icon = L.icon({
+      iconUrl: '/icon.png',
+      iconSize: [32, 32],               
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -36]              
+    });
+
     L.marker([latitude, longitude])
+      .setIcon(icon)
       .addTo(map)
       .bindPopup(markerContent)
       .openPopup();
+
+    
 
     return () => {
       map.remove();

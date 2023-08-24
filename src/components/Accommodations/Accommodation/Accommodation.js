@@ -112,7 +112,7 @@ export const Accommodation = () => {
                     longitude={accommodation.location.lon}
                     latitude={accommodation.location.lat}
                     zoom={15}
-                    markerContent={"f"}
+                    markerContent={accommodation.location.name}
                   />
                 </div>
                 <div class="col-lg-6 info-right">
