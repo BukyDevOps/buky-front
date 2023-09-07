@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const USER_PATH = "http://localhost:8081/api/users";
+// const USER_PATH = "http://localhost:8081/api/users";
+const USER_PATH = "http://localhost:8090/user-service/api/users";
 
 export const getAllUsers = () => {
   return axios.get(USER_PATH);

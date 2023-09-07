@@ -85,7 +85,8 @@ export const UpdateProfile = () => {
 
   const checkTypeExisting = (notificationType) => {
     let index = updatedProfile.notificationTypes.indexOf(notificationType);
-    return index <= -1;
+    console.log("index=" + index);
+    return index >= 0;
   };
 
   return (

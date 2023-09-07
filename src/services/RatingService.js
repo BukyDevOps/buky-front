@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const RATING_PATH = "http://localhost:8084/api/rating";
+// const RATING_PATH = "http://localhost:8084/api/rating";
+const RATING_PATH = "http://localhost:8090/rating-service/api/rating";
 
 export const getRatingByHostId = (hostId) => {
   return axios.get(RATING_PATH + "/host?hostId=" + hostId);

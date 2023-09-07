@@ -29,29 +29,33 @@ export const RatingForm = ({ type, subjectId }) => {
 
   useEffect(() => {
     if (type == "ACCOMMODATION-RATING") {
-      userStayedIn(getUerId(), subjectId).then((res) => {
-        setVisible(res.data);
-        if (res.data) {
-          getRatingByAccommodationId(subjectId).then((res) => {
-            if (res.data) {
-              setRating(res.data);
-              setUpdate(true);
-            }
-          });
-        }
-      });
+      userStayedIn(getUerId(), subjectId)
+        .then((res) => {
+          setVisible(res.data);
+          if (res.data) {
+            getRatingByAccommodationId(subjectId).then((res) => {
+              if (res.data) {
+                setRating(res.data);
+                setUpdate(true);
+              }
+            });
+          }
+        })
+        .catch((err) => console.log(err));
     } else {
-      userHasPreviousReservations(getUerId(), subjectId).then((res) => {
-        setVisible(res.data);
-        if (res.data) {
-          getRatingByHostId(subjectId).then((res) => {
-            if (res.data) {
-              setRating(res.data);
-              setUpdate(true);
-            }
-          });
-        }
-      });
+      userHasPreviousReservations(getUerId(), subjectId)
+        .then((res) => {
+          setVisible(res.data);
+          if (res.data) {
+            getRatingByHostId(subjectId).then((res) => {
+              if (res.data) {
+                setRating(res.data);
+                setUpdate(true);
+              }
+            });
+          }
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
 

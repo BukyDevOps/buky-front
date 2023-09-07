@@ -3,6 +3,9 @@ import { Reservation } from "./Reservation/Reservation";
 import {
   cancelReservation,
   getMyReservations,
+  getMyReservationsForHost,
+  acptReservation,
+  dnyReservation,
 } from "../../services/ReservationService";
 import { useEffect, useState } from "react";
 import { getRole, getUerId } from "../../helpers/AuthHelper";
@@ -14,6 +17,14 @@ export const Reservations = () => {
   useEffect(() => {
     if (getRole() == "GUEST") {
       getMyReservations(getUerId())
+        .then((res) => {
+          setReservations(res.data);
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } else {
+      getMyReservationsForHost()
         .then((res) => {
           setReservations(res.data);
         })
@@ -36,11 +47,19 @@ export const Reservations = () => {
   };
 
   const acceptRes = (id) => {
-    alert("not imeplements");
+    acptReservation(id)
+      .then((res) => {
+        toast.success("Successfully accepted!");
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   const denyRes = (id) => {
-    alert("not imeplements");
+    dnyReservation(id)
+      .then((res) => {
+        toast.success("Successfully denied!");
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   return (

@@ -66,13 +66,18 @@ export const Reservation = ({ reservation, cancelRes, acceptRes, denyRes }) => {
                   </>
                 )}
             </div>
-            <div className="col-lg-4">
-              <RatingForm
-                subjectId={reservation.accommodationId}
-                type={"ACCOMMODATION-RATING"}
-              />
-              <RatingForm subjectId={reservation.hostId} type={"HOST-RATING"} />
-            </div>
+            {getRole() == "GUEST" && (
+              <div className="col-lg-4">
+                <RatingForm
+                  subjectId={reservation.accommodationId}
+                  type={"ACCOMMODATION-RATING"}
+                />
+                <RatingForm
+                  subjectId={reservation.hostId}
+                  type={"HOST-RATING"}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

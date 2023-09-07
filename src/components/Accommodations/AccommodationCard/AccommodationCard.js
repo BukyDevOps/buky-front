@@ -77,7 +77,7 @@ export const AccommodationCard = ({ result, makeReservation }) => {
           <li className="d-flex justify-content-between align-items-center">
             <span>Price per guest</span>
             <a href="#" className="price-btn">
-              {result.pricePerGuest} €
+              {result.pricePerGuest.toFixed(2)} €
             </a>
           </li>
           {getRole() == "GUEST" && (

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const AUTH_PATH = "http://localhost:8081/api/auth";
+// const AUTH_PATH = "http://localhost:8081/api/auth";
+const AUTH_PATH = "http://localhost:8090/user-service/api/auth";
 
 export const login = (credentials) => {
   return axios.post(AUTH_PATH + "/login", credentials);
