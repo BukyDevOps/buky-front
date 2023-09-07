@@ -11,13 +11,13 @@ const SingleAccommodation = ({ accommodation }) => {
                 <h4 class="d-flex justify-content-between">
                     <span>{accommodation?.name ?? "Title"}</span>
                     {/* OVDE RATING calc !!!*/}
-                    <div class="star">
+                    {/* <div class="star">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
-                    </div>
+                    </div> */}
                 </h4>
                 <p>View on map | 49 Reviews</p>
                 <ul class="package-list">
